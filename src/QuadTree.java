@@ -164,13 +164,30 @@ class Main{
             String operation = input.next();
             switch (operation){
                 case "Insert":
-
+                    int x = input.nextInt();
+                    int y = input.nextInt();
+                    Point point = new Point(x,y);
+                    quadTree.insert(point);
                     break;
                 case "Search":
-
+                    int x1 = input.nextInt();
+                    int y1 = input.nextInt();
+                    Point point1 = new Point(x1,y1);
+                    if (quadTree.search_point(point1)){
+                        System.out.println("TRUE");
+                    }else {
+                        System.out.println("FALSE");
+                    }
                     break;
                 case "Area":
-
+                    int x2 = input.nextInt();
+                    int y2 = input.nextInt();
+                    Point point2 = new Point(x2,y2);
+                    int x3 = input.nextInt();
+                    int y3 = input.nextInt();
+                    Point point3 = new Point(x3,y3);
+                    int answer = quadTree.search_area(quadTree.root,point2,point3);
+                    System.out.println(answer);
                     break;
             }
         }
