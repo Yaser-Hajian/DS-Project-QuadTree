@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 class Point{
     int x;
     int y;
@@ -156,6 +158,21 @@ public class QuadTree {
 }
 class Main{
     public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        QuadTree quadTree= new QuadTree();
+        while (input.hasNext()){
+            String operation = input.next();
+            switch (operation){
+                case "Insert":
 
+                    break;
+                case "Search":
+
+                    break;
+                case "Area":
+
+                    break;
+            }
+        }
     }
 }
