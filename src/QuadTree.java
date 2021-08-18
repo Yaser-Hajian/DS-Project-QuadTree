@@ -115,7 +115,44 @@ public class QuadTree {
             }
         }
     }
+    public int search_area(Node node ,Point point1, Point point2){
+        if (node == null){
+            return 0;
+        }
 
+        Node current = node;
+        if (current.point.x >= point1.x &&
+                current.point.x <= point2.x &&
+                current.point.y >= point1.y &&
+                current.point.y <= point2.y)   {
+            return 1+
+                    search_area(current.down_left , point1 , point2)+
+                    search_area(current.down_right , point1 , point2)+
+                    search_area(current.top_left , point1 , point2)+
+                    search_area(current.top_right , point1 , point2);
+        }else if (current.point.x < point1.x && current.point.y < point1.y){
+            return search_area(current.top_right , point1,point2);
+        }else if (current.point.x < point1.x && point1.y < current.point.y && current.point.y < point2.y){
+            return  search_area(current.top_right , point1 , point2)+
+                    search_area(current.down_right, point1, point2);
+        }else if (current.point.x <= point1.x && current.point.y >= point2.y){
+            return search_area(current.down_right , point1,point2);
+        }else if (current.point.x > point1.x && current.point.x < point2.x && current.point.y >= point2.y){
+            return  search_area(current.down_right,point1,point2)+
+                    search_area(current.down_left,point1,point2);
+        }else if (current.point.x >= point2.x && current.point.y >= point2.y){
+            return search_area(current.down_left , point1,point2);
+        }else if (current.point.x > point2.x && current.point.y > point1.y && current.point.y < point2.y){
+            return  search_area(current.top_left , point1 ,point2)+
+                    search_area(current.down_left , point1, point2);
+        }else if (current.point.x >= point2.x && current.point.y <= point1.y){
+            return search_area(current.top_left , point1,point2);
+        }else {
+            return  search_area(current.top_left , point1 , point2)+
+                    search_area(current.top_right , point1 , point2);
+        }
+
+    }
 }
 class Main{
     public static void main(String[] args) {
