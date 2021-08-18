@@ -69,6 +69,53 @@ public class QuadTree {
             }
         }
     }
+    public boolean search_point(Point point){
+        if (root == null){
+            return false;
+        }
+        if (root.point.x == point.x && root.point.y == point.y){
+            return true;
+        }
+
+        Node current = root;
+        while (true){
+            if (point.x >= current.point.x && point.y > current.point.y){
+                current = current.top_right;
+                if (current == null){
+                    return false;
+                }
+                if (current.point.x == point.x && current.point.y == point.y){
+                    return true;
+                }
+            } else if (point.x > current.point.x && point.y <= current.point.y){
+                current = current.down_right;
+                if (current == null){
+                    return false;
+                }
+                if (current.point.x == point.x && current.point.y == point.y){
+                    return true;
+                }
+            } else if (point.x < current.point.x && point.y >= current.point.y){
+                current = current.top_left;
+                if (current == null){
+                    return false;
+                }
+                if (current.point.x == point.x && current.point.y == point.y){
+                    return true;
+                }
+            }
+            else if (point.x <= current.point.x && point.y < current.point.y){
+                current = current.down_left;
+                if (current == null){
+                    return false;
+                }
+                if (current.point.x == point.x && current.point.y == point.y){
+                    return true;
+                }
+            }
+        }
+    }
+
 }
 class Main{
     public static void main(String[] args) {
